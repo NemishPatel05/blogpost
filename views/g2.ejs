@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('layouts/header.ejs'); -%>
+
+
+    <body>
+
+        <!-- Navigation-->
+        <%- include('layouts/navbar.ejs'); -%>
+
+            <!-- Page Header-->
+            <header class="masthead" style="background-image: url('/assets/img/contact-bg.jpg')">
+                <div class="container position-relative px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="page-heading">
+                                <h1>G2 Test</h1>
+                                <span class="subheading">You can book your G2 Test.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content-->
+            <main class="mb-4">
+
+                <div class="container px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+
+                            <!-- Personal Information  -->
+
+                            <p>Personal Information </p>
+
+                            <!-- check user data is available or not  -->
+
+                            <% if(typeof error !='undefined' ) { %>
+                                <div class="form-floating">
+                                    <b>
+                                        <%= error %>
+                                    </b>
+                                    <br>
+                                    <p>Please... Enter your details</p>
+                                </div>
+                                <% } %>
+
+                                    <div class="my-5">
+                                        <form id="contactForm" action="/post/test" method="POST"
+                                            data-sb-form-api-token="API_TOKEN" onsubmit="return validateForm()">
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="firstname" name="firstname" type="text"
+                                                    placeholder="Enter your firstname..." data-sb-validations="required" required
+                                                    <% if(userDetail.firstname!=undefined) {%> readonly value="<%=
+                                                    userDetail.firstname %>" <% } %> />
+                                                        <label for="firstname">First Name</label>
+                                                        <div class="invalid-feedback" id="firstname-error" data-sb-feedback="name:required">A
+                                                            firstname is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="lastname" name="lastname" type="text"
+                                                    placeholder="Enter your lastname..." data-sb-validations="required" required
+                                                    <% if(userDetail.lastname!=undefined) {%> readonly value="<%=
+                                                    userDetail.lastname %>" <% } %>/>
+                                                        <label for="lastname">Last Name</label>
+                                                        <div class="invalid-feedback" id="lastname-error" data-sb-feedback="name:required">A
+                                                            lastname is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="license" name="license_no" type="text"
+                                                    placeholder="Enter your licence number..."
+                                                    data-sb-validations="required" required <%
+                                                    if(userDetail.license_no!=undefined) {%> readonly value="<%=
+                                                    userDetail.license_no %>" <% } %>/>
+                                                        <label for="licence">License Number</label>
+                                                        <div class="invalid-feedback" id="license_no-error" data-sb-feedback="name:required">A
+                                                            licence number is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="age" name="age" type="number"
+                                                    placeholder="Enter your age..." data-sb-validations="required" required<%
+                                                    if(userDetail.age!=undefined) {%> readonly value="<%= userDetail.age
+                                                    %>"
+                                                    required <% } %>/>
+                                                        <label for="age">Age</label>
+                                                        <div class="invalid-feedback" id="age-error" data-sb-feedback="name:required">
+                                                            Age is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="dob" type="text" name="dob"
+                                                    placeholder="Enter your birth date..."
+                                                    data-sb-validations="required" required<% if(userDetail.dob!=undefined) { %>
+                                                readonly value="<%= userDetail.dob %>"
+                                                    required <% } %>/>
+                                                        <label for="dob">Birth Date</label>
+                                                        <div class="invalid-feedback" id="dob-error" data-sb-feedback="name:required">A
+                                                            Birth date is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="make" type="text" name="make"
+                                                    placeholder="Enter your maker name..."
+                                                    data-sb-validations="required" required <%
+                                                    if(userDetail.car_details.make!=undefined) {%> value="<%=
+                                                    userDetail.car_details.make %>" <% } %>/>
+                                                        <label for="make">Make</label>
+                                                        <div class="invalid-feedback" id="make-error" data-sb-feedback="name:required">A
+                                                            makername is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="model" name="model" type="text"
+                                                    placeholder="Enter your model..." data-sb-validations="required" required<%
+                                                    if(userDetail.car_details.model!=undefined) {%> value="<%=
+                                                    userDetail.car_details.model %>" <% } %>/>
+                                                        <label for="model">Model</label>
+                                                        <div class="invalid-feedback" id="model-error" data-sb-feedback="name:required">A
+                                                            Model is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="year" name="year" type="number"
+                                                    placeholder="Enter Year..." data-sb-validations="required" required<%
+                                                    if(userDetail.car_details.year!=undefined) {%>
+                                                value="<%= userDetail.car_details.year %>" <% } %>/>
+                                                        <label for="year">Year</label>
+                                                        <div class="invalid-feedback" id="year-error" data-sb-feedback="name:required">A
+                                                            Year is required.</div>
+                                            </div>
+
+                                            <div class="form-floating">
+                                                <input class="form-control" id="platnumber" name="platno" type="text"
+                                                    placeholder="Enter car's plat number..."
+                                                    data-sb-validations="required" required<%
+                                                    if(userDetail.car_details.platno!=undefined) {%> value="<%=
+                                                    userDetail.car_details.platno %>" <% } %>/>
+                                                        <label for="platnumber">Plat Number</label>
+                                                        <div class="invalid-feedback" id="platno-error" data-sb-feedback="name:required">A
+                                                            platnumber is required.</div>
+                                            </div>
+
+                                            <br />
+
+                                            <button class="btn btn-secondary text-uppercase" id="submitButton"
+                                                type="submit">
+                                                Submit
+                                            </button>
+
+
+                                        </form>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer-->
+            <%- include('layouts/footer.ejs'); -%>
+
+            <script>
+
+                function validateForm() {
+                    const firstName = document.getElementById('firstname').value;
+                    const lastName = document.getElementById('lastname').value;
+                    const licenseNo = document.getElementById('license_no').value;
+                    const age = document.getElementById('age').value;
+                    const dob = document.getElementById('dob').value;
+                    const make = document.getElementById('make').value;
+                    const model = document.getElementById('model').value;
+                    const year = document.getElementById('year').value;
+                    const platno = document.getElementById('platno').value;
+    
+                    let isValid = true;
+    
+                    if (firstName == '') {
+                        document.getElementById('firstname-error').textContent = 'First Name is required';
+                        isValid = false;
+                    }
+                    if (lastName == '') {
+                        document.getElementById('lastname-error').textContent = 'Last Name is required';
+                        isValid = false;
+                    }
+                    const licensePattern = /^[A-Z0-9]{10}$/;
+                    if (licenseNo == '') {
+                        document.getElementById('license_no-error').textContent = 'License Number is required';
+                        isValid = false;
+                    } else if (!licensePattern.test(licenseNo)) {
+                        document.getElementById('license_no-error').textContent = 'Invalid License Number format';
+                        isValid = false;
+                    }
+                    if (age == "") {
+                        document.getElementById('age-error').textContent = 'Age is required';
+                        isValid = false;
+                    } else if (age < 18 || age > 100) {
+                        document.getElementById('age-error').textContent = 'Age must be between 18 and 100';
+                        isValid = false;
+                    }
+                    if (dob == "") {
+                        document.getElementById('dob-error').textContent = 'Date Of Birth is required';
+                        isValid = false;
+                    } else if (dob <= new Date('1900-01-01')) {
+                        document.getElementById('dob-error').textContent = 'Invalid Date of Birth';
+                        isValid = false;
+                    }
+                    if (make == '') {
+                        document.getElementById('make-error').textContent = 'Make ID is required';
+                        isValid = false;
+                    }
+                    if (model == '') {
+                        document.getElementById('model-error').textContent = 'Model is required';
+                        isValid = false;
+                    }
+                    if (year == "") {
+                        document.getElementById('year-error').textContent = 'Year is required';
+                        isValid = false;
+                    }
+                    else if (!/^[0-9]{4}$/.test(year)) {
+                        document.getElementById('year-error').textContent = 'Invalid Year Format (Use a four-digit year, e.g., 2023)';
+                        isValid = false;
+                    }
+                    if (platno == "") {
+                        document.getElementById('platno-error').textContent = 'PlatNo is required';
+                        isValid = false;
+                    }
+                    else if (!/^[A-Z0-9 ]{1,10}$/.test(platno)) {
+                        document.getElementById('platno-error').textContent = 'Invalid Plate Number Format (Use up to 10 uppercase letters and digits)';
+                        isValid = false;
+                    }
+    
+                    return isValid;
+                }
+            </script>
+
+                <!-- Scripts  -->
+                <%- include('layouts/script.ejs'); -%>
+
+    </body>
+
+</html>

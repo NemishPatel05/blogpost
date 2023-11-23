@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- header -->
+<%- include('layouts/header') -%>
+
+  <body>
+
+    <!-- Navigation-->
+    <%- include('layouts/navbar') -%>
+
+    <!-- Page Header-->
+      <header class="masthead" style="background-image: url('assets/img/contact-bg.jpg')">
+
+        <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="page-heading">
+                <h1>Sign Up</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </header>
+
+      <main class="mb-4 borderform">
+       
+        <ul class="nav justify-content-center">
+          
+          <P>User Can Register Here</P>
+          
+        </ul>
+       
+        <div class="container px-4 px-lg-5">
+       
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+       
+            <div class="col-md-10 col-lg-8 col-xl-7">
+       
+              <div class="my-5 tab-content">
+                   
+                <form class="" id="signupform" action="/post" method="POST"
+                      data-sb-form-api-token="API_TOKEN">
+                      <div class="form-floating">
+                        <input class="form-control" id="username" name="username" type="text"
+                          placeholder="Enter your username..." data-sb-validations="required,username" />
+                        <label for="username">User Name</label>
+                        <div class="invalid-feedback" data-sb-feedback="username:required">
+                          Username is required...
+                        </div>
+                        <div class="invalid-feedback" data-sb-feedback="username:username">
+                          UserName is not valid...
+                        </div>
+                      </div>
+                
+                      <div class="form-floating">
+                        <input class="form-control" id="password" name="password" type="password"
+                          placeholder="Enter your password..." data-sb-validations="required,password" />
+                        <label for="password">Password</label>
+                        <div class="invalid-feedback" data-sb-feedback="password:required">
+                          Password is required...
+                        </div>
+                      </div>
+                
+                      <div class="form-floating">
+                        <input class="form-control" id="confirmpassword" name="confirmpassword" type="password"
+                          placeholder="Enter your password..." data-sb-validations="required,confirmpassword" />
+                        <label for="confirmpassword">Confirm Password</label>
+                        <div class="invalid-feedback" data-sb-feedback="confirmpassword:required">
+                          Confirm password is required...
+                        </div>
+                      </div>
+
+                      <div class="form-floating">
+                        <select id="usertype" name="usertype" class="form-select">
+                          <option value="Driver">Driver</option>
+                          <option value="Examiner">Examiner</option>
+                          <option value="Admin">Admin</option>
+                        </select>
+                        <label for="usertype">User Type</label>
+                        
+                        <div class="invalid-feedback" data-sb-feedback="usertype:required">
+                          Select Any Usertype...
+                        </div>
+                      
+                      </div>
+                      <br />
+                      
+                      <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">
+                        Sign Up
+                      </button>
+
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- footer -->
+      <%- include('layouts/footer') -%>
+
+        <!-- js -->
+        <%- include('layouts/script') -%>
+  </body>
+
+</html>
